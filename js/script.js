@@ -1,59 +1,54 @@
 const button = document.querySelector('.check');
 const size = document.querySelector('.size');
-
-// button.addEventListener('click',function(){
-//   const radio = document.querySelector('input[name="paper"]:checked');
-//     if(size.value===""){
-//         console.log("サイズ入力してください");
-//         return;
-//     }else{
-//         console.log(size.value);
-//     }
-//     if(radio===null){
-//         console.log("入力してください");
-//         return;
-//     }else{
-//         console.log(radio.value);
-//     }
-//     const params = new URLSearchParams();
-//     params.set('paper',radio.value);
-//     params.set('size',size.value);
-//     const nexturl = params.toString();
-//     console.log(nexturl);
-
-
-    
-//     window.location.href = `next.html?${nexturl}`;
-// });
-
+const sizeArea = document.querySelector('.size-area');
 button.addEventListener('click',function(){
     const params = new URLSearchParams();
-    if(size===""){
-        alert("サイズを入力してください");
-        return;
+    let hasError = false;
+    if(size.value===""){
+        const sizeError = document.createElement('p');
+        sizeError.textContent = "サイズを入力せよ";
+        sizeError.style.color = 'red';
+        sizeError.style.padding = '16px';
+        sizeError.classList.add('.size-error');
+        sizeArea.append(sizeError);
+        hasError = true;
     }else{
-        const sizevalue = size.value
-        console.log(sizevalue);
+        params.set('size',size.value);
+        
     }
 
-    const radio =  document.querySelector('input[name="paper"]:checked'); 
+    const radio = document.querySelector('input[name="paper"]:checked');
     if(radio===null){
-        alert("用紙を選択してください");
-        return;
+        const paperError = document.createElement('p');
+        paperError.textContent = "用紙入力せよ"
+        paperError.style.color = 'red';
+        paperError.style.padding = '16px';
+        paperError.classList.add('.paper-error');
+        document.querySelector('.paper-area').append(paperError);
+        hasError = true;
     }else{
-    
-        console.log(radio.value);
+        params.set('paper',radio.value);
     }
-    const checkboxes = document.querySelectorAll('input[name="option"]:checked');
-    if(checkboxes.length===0){
-        alert("加工を選択してください");
-        return;
+
+    const options = document.querySelectorAll('input[name="option"]:checked');
+    if(options.length===0){
+        const optionError = document.createElement('p');
+        optionError.textContent="加工入力せよ"
+        document.querySelector('.kakouArea').append(optionError);
+        optionError.style.color = 'red';
+        optionError.style.padding = '16px';
+        optionError.classList.add('.option-error');
+        hasError = true;
     }else{
-        checkboxes.forEach(function(checkbox){
-            params.append('option',checkbox.value);
+        options.forEach(function(option){
+            params.append('option',option.value);
         });
     }
-    params.set('size',size.value);
-    params.set('paper',radio.value);
-    window.location.href = `next.html?${params.toString()}`
+    if(oldError !== null){
+    oldError.remove();
+    }   
+    if(hasError===true){
+        return;
+    }
+    window.location.href=`next.html?${params.toString()}`;
 });
