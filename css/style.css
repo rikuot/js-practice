@@ -4,6 +4,9 @@ body {
     margin: 40px auto;
     padding: 20px;
 }
+.next-page{
+    background-color: #dfffde;
+}
 h1{
     margin-bottom:32px;
 }
@@ -15,4 +18,25 @@ label {
 button {
     padding: 12px 24px;
     cursor: pointer;
+}
+.inner{
+    max-width:1330px;
+    margin: 0 auto;
+    padding: 0px 15px;
+}
+.block-wrapper{
+    display: block;
+    align-content: center;
+    width: 100%;
+    height: 300px;
+    background-color: #eee;
+    font-size: 56px;
+    font-weight: bold;
+    text-align: center;
+    padding: auto;
+}
+.flex{
+    display: flex;
+    flex-direction: column;
+    gap:30px;
 }
