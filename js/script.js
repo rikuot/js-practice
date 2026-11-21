@@ -1,17 +1,23 @@
 const button = document.querySelector('.check');
 const size = document.querySelector('.size');
 const sizeArea = document.querySelector('.size-area');
+const paperArea = document.querySelector('.paper-area');
+const optionArea = document.querySelector('.option-area');
 button.addEventListener('click',function(){
     const params = new URLSearchParams();
     let hasError = false;
+    const errors = document.querySelectorAll('.oldError');
+    errors.forEach(function(error){
+        error.remove();
+    });
     if(size.value===""){
         const sizeError = document.createElement('p');
         sizeError.textContent = "サイズを入力せよ";
         sizeError.style.color = 'red';
         sizeError.style.padding = '16px';
-        sizeError.classList.add('.size-error');
         sizeArea.append(sizeError);
-        hasError = true;
+        sizeError.classList.add('oldError');
+        hasError=true;
     }else{
         params.set('size',size.value);
         
@@ -23,9 +29,9 @@ button.addEventListener('click',function(){
         paperError.textContent = "用紙入力せよ"
         paperError.style.color = 'red';
         paperError.style.padding = '16px';
-        paperError.classList.add('.paper-error');
-        document.querySelector('.paper-area').append(paperError);
-        hasError = true;
+        paperArea.append(paperError);
+        paperError.classList.add('oldError');
+        hasError=true;
     }else{
         params.set('paper',radio.value);
     }
@@ -34,19 +40,17 @@ button.addEventListener('click',function(){
     if(options.length===0){
         const optionError = document.createElement('p');
         optionError.textContent="加工入力せよ"
-        document.querySelector('.kakouArea').append(optionError);
         optionError.style.color = 'red';
         optionError.style.padding = '16px';
-        optionError.classList.add('.option-error');
-        hasError = true;
+        optionArea.append(optionError);
+        optionError.classList.add('oldError');
+        hasError=true;
     }else{
         options.forEach(function(option){
             params.append('option',option.value);
         });
     }
-    if(oldError !== null){
-    oldError.remove();
-    }   
+
     if(hasError===true){
         return;
     }
