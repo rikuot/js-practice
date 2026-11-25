@@ -8,34 +8,35 @@
     <title>Document</title>
 </head>
 <body>
-     <h1>JavaScript練習</h1>
-    <div class="size-area">
-        <label>
-            サイズ
-            <input type="number" class="size">
-        </label>
-    </div>
+    <h1>形状選択</h1>
 
-    <p>用紙を選択</p>
-    <div class="paper-area">
-        <label>
-            <input type="radio" name="paper" value="art">
-            アート紙
-        </label>
+<label>
+    <input type="radio" name="shape" value="circle">
+    正円
+</label>
 
-        <label>
-            <input type="radio" name="paper" value="cast">
-            キャストコート
-        </label>
-    </div>
+<label>
+    <input type="radio" name="shape" value="rectangle">
+    長方形
+</label>
 
-    <div class="option-area"></div>
-        <input type="checkbox" name="option" value="cut">
-        <input type="checkbox" name="option" value="laminate">
-        <input type="checkbox" name="option" value="gloss">
-    </div>
-    <button class="check">確認する</button>
+<label>
+    <input type="radio" name="shape" value="square">
+    正方形
+</label>
 
+<div class="circle size-wrapper">
+    直径：<input type="number">mm
+</div>
+
+<div class="rectangle size-wrapper">
+    縦：<input type="number">mm
+    横：<input type="number">mm
+</div>
+
+<div class="square size-wrapper">
+    一辺：<input type="number">mm
+</div>
 </body>
     <script src="js/script.js"></script>
 </html>
